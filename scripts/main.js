@@ -139,10 +139,9 @@ function main() {
         root.values.forEach(toggleAll);
 
         toggleNodes(root.values[0]);
-        
         toggleNodes(root.values[1]);
         toggleNodes(root.values[1].values[4]);
-        //toggleNodes(root.values[1].values[4].values[1]);
+        toggleNodes(root.values[1].values[4].values[1]);
         toggleNodes(root.values[2]);
         
         toggleNodes(root.values[3]);
