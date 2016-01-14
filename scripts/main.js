@@ -31,7 +31,7 @@ function main() {
         i = 0,
         root = {};
 
-    var spendField = "sum_Large";
+    var spendField = "sum_All";
     //var sumFields = ["Federal", "GovXFer", "State", "Local"];
     var sumFields = ["All", "Large", "Super", "Public", "Small"];
 
@@ -81,22 +81,6 @@ function main() {
     var smallTip = d3.select(document.getElementById("smallTip"));
 
 
-    /**
-    var fedSpend = d3.select(document.getElementById("fedSpend"));
-
-    var stateSpend = d3.select(document.getElementById("stateSpend"));
-
-    var localSpend = d3.select(document.getElementById("localSpend"));
-
-    var federalButton = d3.select(document.getElementById("federalButton"));
-    var stateButton = d3.select(document.getElementById("stateButton"));
-    var localButton = d3.select(document.getElementById("localButton"));
-    var federalTip = d3.select(document.getElementById("federalTip"));
-    var stateTip = d3.select(document.getElementById("stateTip"));
-    var localTip = d3.select(document.getElementById("localTip"));
-    **/
-
-
     var diagonal = d3.svg.diagonal()
         .projection(function (d) {
             return [d.y, d.x];
@@ -112,8 +96,7 @@ function main() {
 
     var nodeRadius;
 
-//    d3.csv("data/FederalBudget_2013.csv", function (csv) {
-    d3.csv("data/iii_2014_1.csv", function (csv) {
+    d3.csv("data/iii_OC_2014.csv", function (csv) {
 
         var data = [];
 
@@ -172,6 +155,7 @@ function main() {
 
         function initialize() {
 
+            
             allButton.on("click", function (d) {
                 toggleButtons(0);
                 spendField = "sum_All";
@@ -202,27 +186,6 @@ function main() {
                 update(root);
             });
 
-/*
-
-            federalButton.on("click", function (d) {
-                toggleButtons(0);
-                spendField = "sum_Federal";
-                update(root);
-            });
-
-            stateButton.on("click", function (d) {
-                toggleButtons(1);
-                spendField = "sum_State";
-                update(root);
-            });
-
-            localButton.on("click", function (d) {
-                toggleButtons(2);
-                spendField = "sum_Local";
-                update(root);
-            });
-
-*/
 
             for (var i = 0; i < sumFields.length; i++) {
                 for (var y = 0; y < levelCeil.length; y++) {
@@ -480,20 +443,11 @@ function main() {
             header2.html((d.depth > 2) ? d["source_Level3"] : "");
             if (d.depth > 3) header2.html(header2.html() + " - " + d["source_Level4"]);
 
-            /*
-            fedSpend.text(formatCurrency(d["sum_Federal"]));
-
-            stateSpend.text(formatCurrency(d["sum_State"]));
-
-            localSpend.text(formatCurrency(d["sum_Local"]));
-            */
-
+            allSpend.text(formatCurrency(d["sum_all"]));
             largeSpend.text(formatCurrency(d["sum_Large"]));
             superSpend.text(formatCurrency(d["sum_Super"]));
             publicSpend.text(formatCurrency(d["sum_Public"]));
             smallSpend.text(formatCurrency(d["sum_Small"]));
-
-
 
 
             toolTip.style("left", (d3.event.pageX + 15) + "px")

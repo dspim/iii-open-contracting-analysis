@@ -27,10 +27,10 @@
 
 <!DOCTYPE html>
 <head>
-<meta HTTP-EQUIV="X-UA-COMPATIBLE" CONTENT="IE=EmulateIE9">
+    <meta HTTP-EQUIV="X-UA-COMPATIBLE" CONTENT="IE=EmulateIE9">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     
-    <title>2014 資策會得標案件視覺化</title>
+    <title>資策會 -  2014年政府採購得標分析</title>
     <link type="text/css" rel="stylesheet" href="styles/style.css">
 
     <script type="text/javascript" src="scripts/d3.min.js"></script>
@@ -52,10 +52,11 @@
 
 <body style="height:900px; width:1280px; overflow:auto" onload="main()">
 
-
 <div class="bp-navBar" style="left:20px;">
     <ul class="bp-navigation clearfix" style="list-style-type:none">
-        <li id="largeButton" class="button selected">巨額採購</li>
+    <div class="title">採購金額級距</div>
+        <li id="allButton" class="button">全部</li>
+        <li id="largeButton" class="button">巨額採購</li>
         <li id="superButton" class="button">查核金額</li>
         <li id="publicButton" class="button">公告金額</li>
         <li id="smallButton" class="button">未達公告</li>
@@ -64,14 +65,40 @@
 
 
 
-<div id="body" style="position: absolute; top:80px">
+<div id="footer" style="position:absolute; right:20px; top:15px; width:600px">
+    資策會 -  2014年政府採購得標分析
+    <div style='line-height: 10px'>
+     <br>
+    </div>
+    <div class="hint" style='line-height: 20px'>
+        使用說明：線條粗細代表決標金額加總；點擊「圓圈」展開更多內容<br>
+
+        資料來源: <a href="http://web.pcc.gov.tw/" title="政府電子採購網"
+        style="color:#777">政府電子採購網</a><br>
+
+        資料分析與說明: <a href="http://dsp.im" title="DSP智庫驅動"
+        style="color:#777">DSP智庫驅動</a><br>
+
+      
+
+    </div>
+
+</div>
+
+<div id="body" style="position: absolute; top:105px">
 
     <div id="toolTip" class="tooltip" style="opacity:0;">
         <div id="head" class="header"></div>
         <div id="header1" class="header1"></div>
         <div id="header2" class="header2"></div>
         <div style="position:absolute; left:10px">
-            <div id="largeTip" class="tip" style="width:135px; left:0px; top:10px; position: absolute;">
+            <div id="allTip" class="tip" style="display: none;">
+                <div class="header3"><br>全部</div>
+                <div class="header-rule"></div>
+                <div id="allSpend" class="header4"></div>
+            </div>
+            <div id="largeTip" class="tip" style="width:135px; 
+            left:0px; top:10px; position: absolute;">
                 <div class="header3"><br>巨額採購</div>
                 <div class="header-rule"></div>
                 <div id="largeSpend" class="header4"></div>
