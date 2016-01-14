@@ -32,7 +32,6 @@ function main() {
         root = {};
 
     var spendField = "sum_All";
-    //var sumFields = ["Federal", "GovXFer", "State", "Local"];
     var sumFields = ["All", "Large", "Super", "Public", "Small"];
 
     var sourceFields = ["Category", "Level1", "Level2", "Level3", "Level4"];
@@ -45,7 +44,6 @@ function main() {
     var formatNumber = d3.format(",f");
     
     var formatCurrency = function (d) {
- //       return "$" + formatNumber(d) + " Billion"
         return formatNumber(d) + "元"
  
     };
@@ -62,7 +60,6 @@ function main() {
     var header1 = d3.select(document.getElementById("header1"));
     var header2 = d3.select(document.getElementById("header2"));
 
-    var allSpend = d3.select(document.getElementById("allSpend"));
     var largeSpend = d3.select(document.getElementById("largeSpend"));
     var superSpend = d3.select(document.getElementById("superSpend"));
     var publicSpend = d3.select(document.getElementById("publicSpend"));
@@ -79,6 +76,7 @@ function main() {
     var superTip = d3.select(document.getElementById("superTip"));
     var publicTip = d3.select(document.getElementById("publicTip"));
     var smallTip = d3.select(document.getElementById("smallTip"));
+
 
 
     var diagonal = d3.svg.diagonal()
@@ -141,7 +139,7 @@ function main() {
         root.values.forEach(toggleAll);
 
         toggleNodes(root.values[0]);
-        //toggleNodes(root.values[0].values[1].values[0]);
+        
         toggleNodes(root.values[1]);
         toggleNodes(root.values[1].values[4]);
         //toggleNodes(root.values[1].values[4].values[1]);
@@ -155,8 +153,7 @@ function main() {
 
         function initialize() {
 
-            
-            allButton.on("click", function (d) {
+           allButton.on("click", function (d) {
                 toggleButtons(0);
                 spendField = "sum_All";
                 update(root);
@@ -443,11 +440,13 @@ function main() {
             header2.html((d.depth > 2) ? d["source_Level3"] : "");
             if (d.depth > 3) header2.html(header2.html() + " - " + d["source_Level4"]);
 
-            allSpend.text(formatCurrency(d["sum_all"]));
+
             largeSpend.text(formatCurrency(d["sum_Large"]));
             superSpend.text(formatCurrency(d["sum_Super"]));
             publicSpend.text(formatCurrency(d["sum_Public"]));
             smallSpend.text(formatCurrency(d["sum_Small"]));
+
+
 
 
             toolTip.style("left", (d3.event.pageX + 15) + "px")
